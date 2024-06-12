@@ -1,0 +1,43 @@
+"A datetime string with format `Y-m-d H:i:s`, e.g. `2018-05-23 13:43:32`."
+scalar DateTime @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\DateTime")
+
+"Indicates what fields are available at the top level of a query operation."
+type Query {
+    tasks: [Task!]! @paginate @whereAuth(relation: "user")
+    me: User @auth
+}
+
+type Mutation {
+    createTask(title: String! @rules(apply: ["min:3", "max:255"])): Task @create @inject(context: "user.id", name: "user_id")
+    updateTask(id: ID!, title: String!): Task @update
+    deleteTask(id: ID!): Task @delete @whereAuth(relation: "user")
+}
+
+type Task {
+    id: ID!
+    user: User! @belongsTo
+    title: String!
+    "When the task was created."
+    created_at: DateTime!
+    "When the task was last updated."
+    updated_at: DateTime!
+}
+
+
+"Account of a person who utilizes this application."
+type User {
+    "Non-unique name."
+    name: String!
+
+    "Unique email address."
+    email: String!
+
+    "When the email was verified."
+    email_verified_at: DateTime
+
+    "When the account was created."
+    created_at: DateTime!
+
+    "When the account was last updated."
+    updated_at: DateTime!
+}

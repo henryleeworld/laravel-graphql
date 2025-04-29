@@ -8,15 +8,19 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Task extends Model
 {
+    /** @use HasFactory<\Database\Factories\TaskFactory> */
     use HasFactory;
 
     /**
      * The attributes that are mass assignable.
      *
-     * @var array<int, string>
+     * @var list<string>
      */
     protected $fillable = ['user_id', 'title', 'description'];
 
+    /**
+     * Get the user that owns the task.
+     */
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);

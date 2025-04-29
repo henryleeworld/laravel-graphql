@@ -1,4 +1,4 @@
-# Laravel 11 圖形查詢語言
+# Laravel 12 圖形查詢語言
 
 引入 nuwave 的 lighthouse 套件來擴增圖形查詢語言，它提供了一個更靈活、高效的方式來請求和操作數據，允許客戶端指定所需的數據結構，從而解決了傳統具象狀態傳輸應用程式介面中的過度或不足數據問題。圖形查詢語言支持讀取（查詢）、寫入（變更）和訂閱（實時更新）操作，使其成為應對現代應用程式需求的理想選擇。
 
@@ -28,11 +28,11 @@ $ php artisan migrate --seed
 ----
 
 ## 畫面截圖
-![](https://i.imgur.com/tStELZ8.png)
+![](https://i.imgur.com/aS80BJq.png)
 > 傳送 HTML 表單資料產生存取權杖
 
-![](https://i.imgur.com/A81cNNo.png)
+![](https://i.imgur.com/XPf8gR0.png)
 > 在 Authorization 請求標頭中指定存取權杖作為憑證令牌來做透過運算式查詢單一端點，以便一次擷取多種型別的資料
 
-![](https://i.imgur.com/7xO0Gpb.png)
+![](https://i.imgur.com/T6zRXSH.png)
 > 在 Authorization 請求標頭中指定存取權杖作為憑證令牌來做撤銷存取權杖

@@ -2,15 +2,15 @@
 scalar DateTime @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\DateTime")
 
 "Indicates what fields are available at the top level of a query operation."
-type Query {
-    tasks: [Task!]! @paginate @whereAuth(relation: "user")
-    me: User @auth
-}
-
 type Mutation {
     createTask(title: String! @rules(apply: ["min:3", "max:255"])): Task @create @inject(context: "user.id", name: "user_id")
     updateTask(id: ID!, title: String!): Task @update
     deleteTask(id: ID!): Task @delete @whereAuth(relation: "user")
+}
+
+type Query {
+    tasks: [Task!]! @paginate @whereAuth(relation: "user")
+    me: User @auth
 }
 
 type Task {
@@ -23,8 +23,7 @@ type Task {
     updated_at: DateTime!
 }
 
-
-"Account of a person who utilizes this application."
+"Account of a person who uses this application."
 type User {
     "Non-unique name."
     name: String!
